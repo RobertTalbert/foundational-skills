@@ -56,7 +56,7 @@ Draft a research question of guided by techniques and data sources that you are 
 
 3.  Explain the analytical level at which these data would need to be collected and analyzed.
 
-    -   
+    -   Not totally sure, but this might be done with the student population across several sections of the same course, where in some sections the pre-class work is done with one kind of grading method and other sections use another method; then you look at individual student data that's aggregated by grading method. 
 
 4.  How, if at all, will your article touch upon the application(s) of LA to “understand and improve learning and the contexts in which learning occurs?”
 
