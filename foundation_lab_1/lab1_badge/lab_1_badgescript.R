@@ -16,6 +16,8 @@
 #### Write your code below:
 
 
+df <- data.frame(Students = c("Thor", "Rogue", "Electra", "Electra", "Wolverine"), Foods = c("Bread", "Orange", "Chocolate", "Carrots", "Milk"))
+df
 
 
 ################
@@ -24,7 +26,7 @@
 
 # Using the data frame created in Problem 2, use the table() command to create a frequency table for the column called "Students".
 
-
+table(df$Students)
 
 
 ################
@@ -34,9 +36,11 @@
 #Create a vector of five numbers of your choice between 0 and 10, save that vector to an object, and use the sum() function to calculate the sum of the numbers.
 
 
+
 #### Write your code below:
 
-
+my_numbers <- c(2, 3, 5, 8, 7)
+sum(my_numbers)
 
 
 ################
@@ -45,13 +49,18 @@
 
 # a. Create code to read the data/sci-online-classes.csv file into R using function(s) from the tidyverse. (Note: this package loads with library(tidyverse). Save the data as an object called sci_classes.
 
+library(tidyverse)
+sci_classes <- read.csv("data/sci-online-classes.csv")
+
+
 # c. Examine the contents of sci_classes in your console.Is your object a tibble? How do you know? (Hint: Check the output in the console.) 
-
-
 
 
 #### Write your code below:
 
+head(sci_classes)
+# Not a tibble because there's no information in the column headers 
+# about the data types
 
 
 
@@ -71,7 +80,8 @@
 
 #### Write your code below:
 
-
+no_subject_section <- select(sci_classes, -c(subject, section))
+head(no_subject_section)
 
 
 ##################

@@ -728,7 +728,7 @@ Then you can call only that sheet. Our data only includes one sheet so we do not
 Read in from Path
 
 ```{r echo = TRUE, message = FALSE, warning = FALSE}
-sci_ol_classes <- read_csv("C:/Users/User/Documents/RProj22/foundation_labs_2022/foundation_lab_1/data/sci-online-classes.csv") #<<
+sci_ol_classes <- read_csv("data/sci-online-classes.csv") #<<
 ```
 
 
