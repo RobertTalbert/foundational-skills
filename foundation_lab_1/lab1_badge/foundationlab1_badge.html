@@ -9,9 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Jeanne McClure" />
+<meta name="author" content="Robert Talbert" />
 
-<meta name="date" content="2022-07-11" />
+<meta name="date" content="2022-07-13" />
 
 <title>Data Sources badge</title>
 
@@ -365,8 +365,8 @@ pre code {
 
 <h1 class="title toc-ignore">Data Sources badge</h1>
 <h3 class="subtitle">LASER Institute Foundation Learning Lab 1</h3>
-<h4 class="author">Jeanne McClure</h4>
-<h4 class="date">July 11, 2022</h4>
+<h4 class="author">Robert Talbert</h4>
+<h4 class="date">July 13, 2022</h4>
 
 </div>
 
@@ -396,27 +396,44 @@ welcome to select one of your research papers.</p>
 <ol style="list-style-type: decimal">
 <li><p>Provide an APA citation for your selected study.</p>
 <ul>
-<li></li>
+<li>Jovanović, J., Gašević, D., Dawson, S., Pardo, A., &amp; Mirriahi,
+N. (2017). Learning analytics to unveil learning strategies in a flipped
+classroom. <em>The Internet and Higher Education</em>,<em>33</em>(4),
+74-85.</li>
 </ul></li>
 <li><p>What types of data are associated with LA ?</p>
 <ul>
-<li></li>
+<li>Learning event data pulled off of the LMS: “Each event is
+represented as a quadruple comprising of event id, student id
+(anonymized), type of learning action, and timestamp.” The learning
+action type is given by a text code (e.g. <code>VIDEO_PLAY</code> is
+code for a student starting an instructional video).</li>
 </ul></li>
 <li><p>What type of data structures are analyzed in the educational
 context?</p>
 <ul>
-<li></li>
+<li>“To address research question 1, learning sessions were encoded as
+sequences based on a representation format of the TraMineR R package.”
+IDK what this is but it sounds like a special data structure used to
+identify sequences of events.</li>
 </ul></li>
 <li><p>How might this article be used to better understand a dataset or
 educational context of personal or professional interest to you?</p>
 <ul>
-<li></li>
+<li>I can see a lot of my future research revolving around pulling
+information off of an LMS to look for patterns in engagement.
+Self-reported data from students is the norm in the kind of research I’m
+into, and that’s not the greatest; it’s nice to know R can help get away
+from this and look at actual student actions.</li>
 </ul></li>
 <li><p>Finally, how do these processes compare with what teachers and
 educational organizations already do to support and assess student
 learning?</p>
 <ul>
-<li></li>
+<li>It’s very different. As an instructor, I have never mined our LMS
+for student activity – I’m not even sure how I would do that! We just
+sort of go on student self-reporting, or maybe basic reports from the
+LMS. But this kind of analysis is much deeper.</li>
 </ul></li>
 </ol>
 <p>Draft a research question of guided by techniques and data sources
@@ -424,11 +441,17 @@ that you are potentially interested in exploring in more depth.</p>
 <ol style="list-style-type: decimal">
 <li><p>What data source(s) should be analyzed or discussed?</p>
 <ul>
-<li></li>
+<li>Student data on engagement with video content loaded into the LMS
+including: time of the day the video is first accessed, how much of the
+video is watched, how long students stay with the video, how many times
+the video is started, whether the video is completed (or, the timestamp
+where students stop watching)</li>
 </ul></li>
 <li><p>What is the purpose of your article?</p>
 <ul>
-<li></li>
+<li>To see if students engage more/better with video content in a
+flipped classroom if the pre-class work is graded pass/no pass versus
+graded on points</li>
 </ul></li>
 <li><p>Explain the analytical level at which these data would need to be
 collected and analyzed.</p>
@@ -439,7 +462,9 @@ collected and analyzed.</p>
 of LA to “understand and improve learning and the contexts in which
 learning occurs?”</p>
 <ul>
-<li></li>
+<li>This study would help us understand how best to assess pre-class
+learning activities in a flipped classroom, particularly how engagement
+depends on grading method.</li>
 </ul></li>
 </ol>
 </div>
@@ -448,11 +473,79 @@ learning occurs?”</p>
 <p>After you finish the script file for <a href="https://github.com/laser-institute/foundational-skills/tree/master/foundation_lab_1/lab1_badge">lab1_badge</a>
 add the code fo reach problem into the correct code chunks below. #
 Making sure not to change the code chunk name.</p>
-<pre class="r"><code># YOUR FINAL CODE HERE</code></pre>
-<pre class="r"><code># YOUR FINAL CODE HERE</code></pre>
-<pre class="r"><code># YOUR FINAL CODE HERE</code></pre>
-<pre class="r"><code># YOUR FINAL CODE HERE</code></pre>
-<pre class="r"><code># YOUR FINAL CODE HERE</code></pre>
+<pre class="r"><code># YOUR FINAL CODE HERE
+df &lt;- data.frame(Students = c(&quot;Thor&quot;, &quot;Rogue&quot;, &quot;Electra&quot;, &quot;Electra&quot;, &quot;Wolverine&quot;), Foods = c(&quot;Bread&quot;, &quot;Orange&quot;, &quot;Chocolate&quot;, &quot;Carrots&quot;, &quot;Milk&quot;))
+# It&#39;s actually &quot;Elektra&quot; :) 
+
+df</code></pre>
+<pre><code>##    Students     Foods
+## 1      Thor     Bread
+## 2     Rogue    Orange
+## 3   Electra Chocolate
+## 4   Electra   Carrots
+## 5 Wolverine      Milk</code></pre>
+<pre class="r"><code># YOUR FINAL CODE HERE
+table(df$Students)</code></pre>
+<pre><code>## 
+##   Electra     Rogue      Thor Wolverine 
+##         2         1         1         1</code></pre>
+<pre class="r"><code># YOUR FINAL CODE HERE
+
+my_numbers &lt;- c(2, 3, 5, 8, 7)
+sum(my_numbers)</code></pre>
+<pre><code>## [1] 25</code></pre>
+<pre class="r"><code># YOUR FINAL CODE HERE
+library(tidyverse)</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.2.1</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.7     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.2.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>sci_classes &lt;- read.csv(&quot;~/GitHub/foundational-skills/foundation_lab_1/data/sci-online-classes.csv&quot;)</code></pre>
+<pre class="r"><code># YOUR FINAL CODE HERE
+head(sci_classes)</code></pre>
+<pre><code>##   student_id     course_id total_points_possible total_points_earned
+## 1      43146 FrScA-S216-02                  3280                2220
+## 2      44638  OcnA-S116-01                  3531                2672
+## 3      47448 FrScA-S216-01                  2870                1897
+## 4      47979  OcnA-S216-01                  4562                3090
+## 5      48797 PhysA-S116-01                  2207                1910
+## 6      51943 FrScA-S216-03                  4208                3596
+##   percentage_earned subject semester section
+## 1         0.6768293   FrScA     S216       2
+## 2         0.7567261    OcnA     S116       1
+## 3         0.6609756   FrScA     S216       1
+## 4         0.6773345    OcnA     S216       1
+## 5         0.8654282   PhysA     S116       1
+## 6         0.8545627   FrScA     S216       3
+##                        Gradebook_Item Grade_Category FinalGradeCEMS
+## 1 POINTS EARNED &amp; TOTAL COURSE POINTS             NA       93.45372
+## 2                           ATTEMPTED             NA       81.70184
+## 3 POINTS EARNED &amp; TOTAL COURSE POINTS             NA       88.48758
+## 4 POINTS EARNED &amp; TOTAL COURSE POINTS             NA       81.85260
+## 5 POINTS EARNED &amp; TOTAL COURSE POINTS             NA       84.00000
+## 6 POINTS EARNED &amp; TOTAL COURSE POINTS             NA             NA
+##   Points_Possible Points_Earned Gender q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 TimeSpent
+## 1               5            NA      M  5  4  4  5  5  5  5  5  4   5 1555.1667
+## 2              10            10      F  4  4  3  4  4  4  4  5  4   4 1382.7001
+## 3              10            NA      M  5  4  4  5  5  4  4  5  3   5  860.4335
+## 4               5             4      M  5  5  3  5  5  5  4  5  5   5 1598.6166
+## 5             438           399      F  4  3  3  4  4  4  4  4 NA   3 1481.8000
+## 6               5            NA      F NA NA NA NA NA NA NA NA NA  NA    3.4501
+##   TimeSpent_hours TimeSpent_std int  pc       uv
+## 1     25.91944500    -0.1805150 5.0 4.5 4.333333
+## 2     23.04500167    -0.3078031 4.2 3.5 4.000000
+## 3     14.34055833    -0.6932595 5.0 4.0 3.666667
+## 4     26.64361000    -0.1484470 5.0 3.5 5.000000
+## 5     24.69666667    -0.2346629 3.8 3.5 3.500000
+## 6      0.05750167    -1.3257521 4.6 4.0 4.000000</code></pre>
+<pre class="r"><code># Not a tibble because there&#39;s no information in the column headers 
+# about the data types</code></pre>
 </div>
 <div id="knit-submit" class="section level3">
 <h3>Knit &amp; Submit</h3>

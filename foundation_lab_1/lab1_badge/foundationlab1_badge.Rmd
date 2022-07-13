@@ -1,7 +1,7 @@
 ---
 title: 'Data Sources badge'
 subtitle: "LASER Institute Foundation Learning Lab 1"
-author: "Jeanne McClure"
+author: "Robert Talbert"
 date: "`r format(Sys.Date(),'%B %e, %Y')`"
 output: html_document
 ---
@@ -25,34 +25,34 @@ Use the institutional library (e.g. [NCSU Library](https://www.lib.ncsu.edu/#art
 
 1.  Provide an APA citation for your selected study.
 
-    -   
+    -   Jovanović, J., Gašević, D., Dawson, S., Pardo, A., & Mirriahi, N. (2017). Learning analytics to unveil learning strategies in a flipped classroom. _The Internet and Higher Education_,_33_(4), 74-85.
 
 2.  What types of data are associated with LA ?
 
-    -   
+    -   Learning event data pulled off of the LMS: "Each event is represented as a quadruple comprising of event id, student id (anonymized), type of learning action, and timestamp." The learning action type is given by a text code (e.g. `VIDEO_PLAY` is code for a student starting an instructional video). 
 
 
 3.  What type of data structures are analyzed in the educational context?
 
-    -   
+    -   "To address research question 1, learning sessions were encoded as sequences based on a representation format of the TraMineR R package." IDK what this is but it sounds like a special data structure used to identify sequences of events. 
 
 4.  How might this article be used to better understand a dataset or educational context of personal or professional interest to you?
 
-    -   
+    -   I can see a lot of my future research revolving around pulling information off of an LMS to look for patterns in engagement. Self-reported data from students is the norm in the kind of research I'm into, and that's not the greatest; it's nice to know R can help get away from this and look at actual student actions. 
 
 5.  Finally, how do these processes compare with what teachers and educational organizations already do to support and assess student learning? 
 
-    -   
+    -   It's very different. As an instructor, I have never mined our LMS for student activity -- I'm not even sure how I would do that! We just sort of go on student self-reporting, or maybe basic reports from the LMS. But this kind of analysis is much deeper. 
 
 Draft a research question of guided by techniques and data sources that you are potentially interested in exploring in more depth.
 
 1.  What data source(s) should be analyzed or discussed?
 
-    -   
+    -   Student data on engagement with video content loaded into the LMS including: time of the day the video is first accessed, how much of the video is watched, how long students stay with the video, how many times the video is started, whether the video is completed (or, the timestamp where students stop watching)
 
 2.  What is the purpose of your article?
 
-    -   
+    -   To see if students engage more/better with video content in a flipped classroom if the pre-class work is graded pass/no pass versus graded on points 
 
 3.  Explain the analytical level at which these data would need to be collected and analyzed.
 
@@ -60,7 +60,7 @@ Draft a research question of guided by techniques and data sources that you are 
 
 4.  How, if at all, will your article touch upon the application(s) of LA to “understand and improve learning and the contexts in which learning occurs?”
 
-    -   
+    -   This study would help us understand how best to assess pre-class learning activities in a flipped classroom, particularly how engagement depends on grading method. 
 
 
 
@@ -71,14 +71,17 @@ After you finish the script file for [lab1_badge](https://github.com/laser-insti
 
 ```{r, problem_1}
 # YOUR FINAL CODE HERE
+df <- data.frame(Students = c("Thor", "Rogue", "Electra", "Electra", "Wolverine"), Foods = c("Bread", "Orange", "Chocolate", "Carrots", "Milk"))
+# It's actually "Elektra" :) 
 
+df
 
 ```
 
 
 ```{r, problem_2}
 # YOUR FINAL CODE HERE
-
+table(df$Students)
 
 ```
 
@@ -86,6 +89,8 @@ After you finish the script file for [lab1_badge](https://github.com/laser-insti
 ```{r, problem_3}
 # YOUR FINAL CODE HERE
 
+my_numbers <- c(2, 3, 5, 8, 7)
+sum(my_numbers)
 
 ```
 
@@ -93,7 +98,8 @@ After you finish the script file for [lab1_badge](https://github.com/laser-insti
 
 ```{r, problem_4}
 # YOUR FINAL CODE HERE
-
+library(tidyverse)
+sci_classes <- read.csv("~/GitHub/foundational-skills/foundation_lab_1/data/sci-online-classes.csv")
 
 ```
 
@@ -101,7 +107,9 @@ After you finish the script file for [lab1_badge](https://github.com/laser-insti
 
 ```{r, problem_5}
 # YOUR FINAL CODE HERE
-
+head(sci_classes)
+# Not a tibble because there's no information in the column headers 
+# about the data types
 
 ```
 
