@@ -63,7 +63,7 @@ Bullet points can be used with a `single dash` or a `plus sign`
 > Outcomes:
 
 -   Learn R Markdown.
-    +   Learn about Yaml heading.
+    -   Learn about Yaml heading.
     -   Learn R Markdown Syntax.
 -   Learn how to read in data.
 -   Learn to wrangle data.
@@ -93,7 +93,7 @@ Provide a brief overview or case study.
 Load Packages
 
 ```{r warning =FALSE, message=FALSE}
-
+install.packages("here")
 #Load necessary packages
 library(tidyverse)
 library(here)
@@ -123,7 +123,7 @@ this analysis:
 
 ```{r}
 #load with read_csv package
-time_spent <- read_csv("~/RProj22/foundation_labs_2022/foundation_lab_2/data/log-data.csv")
+time_spent <- read_csv("~/GitHub/foundational-skills/foundation_lab_2/data/log-data.csv")
 ```
 
 Now let's load it with the {here} package.
@@ -153,18 +153,19 @@ glimpse(gradebook)
 
 The third data source is a self-report survey. This was data collected
 before the start of the course. The survey included ten items, each
-corresponding to one of three motivation measures: interest, utility value, and perceived competence. These were chosen for their alignment
+corresponding to one of three motivation measures: interest, utility
+value, and perceived competence. These were chosen for their alignment
 with one way to think about students' motivation, to what extent they
 expect to do well (corresponding to their perceived competence) and
 their value for what they are learning (corresponding to their interest
-and utility value). 
+and utility value).
 
 ```{r}
 #load data 3:Self-Report Survey
 survey <- read_csv(here("data", "survey.csv"))
 
 #inspect data with view - yes the "V" is capitalized
-View(survey)
+# View(survey)
 ```
 
 ### b. Tidy data
@@ -255,7 +256,6 @@ data_to_explore \<- full_join(joined_data, survey, by = c("student_id",
 
 
 ```
-
 
 ```{r}
 #mutate to change variable class from double or numeric to character

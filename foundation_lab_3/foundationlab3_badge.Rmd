@@ -20,43 +20,47 @@ To earn a badge for each lab, you are required to respond to a set of prompts fo
 -   In Part II, you will create a simple data product in R that demonstrates your ability to apply a data analysis technique introduced in this learning lab.
 
 ### Part I: Reflect and Plan
-
+  
 Use the institutional library (e.g. [NCSU Library](https://www.lib.ncsu.edu/#articles)), [Google Scholar](https://scholar.google.com/) or search engine to locate a research article, presentation, or resource that applies learning analytics analysis to an educational context or topic of interest. More specifically, **locate a study that makes use of one of the data structures we learned today.** You are also welcome to select one of your research papers.
 
 1.  Provide an APA citation for your selected study.
 
-    -   
+    -   Lucke, T. (2014). Using learning analytics to evaluate the effectiveness of the flipped classroom approach. In _Proceedings of the 2014 Australasian Association for Engineering Education Conference_ (pp. 1-9). Massey University.
 
 2.  What educational issue, “problem of practice,” and/or questions were addressed?
 
-    -   
+    -   The paper tries to quantify the effects that the flipped classroom approach had on the performance of students on their course assessment tasks.
 
 
 3.  What are some common approaches EDA approaches used and what did they entail?
 
 
-    -   
+    -   THis isn't "EDA" but a series of correlations were done on pairs of quantitative variables coming from students in a flipped class: 
+     - Final exam score vs. student GPA
+     - LMS quiz scores vs. time spent on video lectures 
+     - Final exam scores vs. time spent on video lectures 
 
 4.  How were data visualization or feature engineering used to support analysis, if at all?What were the key findings or conclusions?
 
-    -   
+    -   The scatterplots between the three pairs of quantitative variables above were used to see if there was any relationship between them. There was (1) a weak relationship between GPA and final exam and (2) somewhat stronger relationships between time spend on video lectures and assessment scores. 
+    
 5. Finally,  what value, if any, might education practitioners find in these results?
 
-    -   
+    -   Results aren't terribly surprising here but instructors can show the data to students maybe, and explain that more engagement with the video lectures in a flipped class situation is related to higher grades. 
 
 Draft a new research question of guided by the the phases of the Learning Anlytics Workflow. Or use one of your current research questions.
 
 1.  What educational issue, “problem of practice,” and/or questions is  addressed??
 
-    -   
+    -   So, what if you did a similar study but instead of using quantitative variables for grades, you used categorical variables -- i.e. standards based grading or the use of a 3- or 4-level rubric? How would that change the results, and how they are visualized and reported? 
 
 2.  Briefly describe any steps of the EDA approach that will be used..
  
-    - 
+    - You couldn't do scatterplots any more because one variable (time spent on video lectures) is quantitative but the response variables (grades) aren't. You could do side-by-side boxplots (one per grade, showing the distribution of time spent) although these might not fully capture how time spent affects the grades. 
 
 3.  What elements of EDA might require human judgement and decision making?
 
-    -   
+    -   If you went the route of the side-by-side boxplots, human judgment would be needed to see the relationship between the variables that would ordinarily be really visible if it was a scatterplot. Also there wouldn't be any correlation (at least I don't know how you'd do a correlation between qualitative and quantitative -- there probably is some method for that).
 
 ### Part II: Data Product
 
@@ -77,10 +81,32 @@ Exercise 1:
   + Examine the relationship between two categorical variables.
   + Add an appropriate title to your chart.
   + Add a caption that poses a question educators may have about this data that your visualization could help answer.
-
+. 
 
 ```{r, data-viz1}
-# YOUR FINAL CODE HERE
+
+# Set it all up first 
+
+library(ggplot2)
+library(tidyverse)
+library(here)
+
+sciclasses <- read.csv(here("data", "sci-online-classes.csv"))
+
+
+# Create side-by-side bar plots -- one group per subject, then bars for each semester
+
+## First we need a contingency table, and convert it to a data frame
+
+results <- data.frame(table(sciclasses$subject, sciclasses$semester))
+
+## Now build the plot
+
+ggplot(data = results, aes(x = Var1, y = Freq, fill = Var2)) + 
+  geom_bar(stat = "identity", position = position_dodge(), alpha = 0.75)  +
+  ylim(0,125) + 
+  labs(x = "Course", y = "Enrollment", title = "Enrollments per semester",
+       caption = "How do enrollments in the different courses change from one semester to the next?")
 ```
 
 
@@ -96,7 +122,15 @@ Exercise 2:
   + Adjust or remove your legend as appropriate. 
 
 ```{r, data-viz2}
-# YOUR FINAL CODE HERE
+ggplot(sciclasses, aes(x = TimeSpent_hours, y = percentage_earned, color = percentage_earned)) + 
+  geom_point(
+    # color = "black",
+    # fill = "#69b3a2",
+    alpha = 0.5, 
+    size = 2
+  ) + 
+  scale_colour_gradientn(colours=rainbow(4)) + 
+  labs(x = "Time spent (hours)", y = "Grade (percentage)", caption = "Does one's grade relate to the time spent on the course?")
 ```
 
 ### Knit & Submit

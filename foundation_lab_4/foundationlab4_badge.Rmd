@@ -27,37 +27,38 @@ Use the institutional library (e.g. [NCSU Library](https://www.lib.ncsu.edu/#art
 
 1.  Provide an APA citation for your selected study.
 
-    -   
+    -   Lucke, T. (2014). Using learning analytics to evaluate the effectiveness of the flipped classroom approach. In _Proceedings of the 2014 Australasian Association for Engineering Education Conference_ (pp. 1-9). Massey University.
 
 2.  What educational issue, “problem of practice,” and/or questions were addressed?
 
-    -   
+    -   The paper tries to quantify the effects that the flipped classroom approach had on the performance of students on their course assessment tasks.
 
 
-3.  What maked this a “good” data product?
+3.  What made this a “good” data product?
 
-
-    -   
+    -   It was professionally laid out, and the visualizations were done properly (scatterplots comparing two quantitative variables, regression models and signifance included) and contributed to the overall research questions. 
 
 4.  In your self-selected article, who were the intended beneficiaries of the work and what “change ideas” might the result imply for them?
 
-    -   
+    -   Beneficiaries are mainly instructors running flipped classes. The most surprising results were how weak the correlations were between some of the variables, especially time spent on videos and scores on quizzes. 
+    
 5. Finally,  how were modeling used to support analysis, if at all? Were these practices new to you?
-    -   
 
-Draft a new research question of guided by the the phases of the Learning Anlytics Workflow. Or use one of your current research questions.
+    -   The regression models provided the most insights. Most people could guess there was going to be an overall positive relationship between time spent on videos and quiz scores; but the extent of that positivity and the relative weakness of the relationship only come through the regression analysis. 
+
+Draft a new research question of guided by the the phases of the Learning Analytics Workflow. Or use one of your current research questions.
 
 1.  What educational issue, “problem of practice,” and/or questions is  addressed?
 
-    -   
+    -   So, you could modify the study above and replace quiz scores with scores on a self-regulation instrument like the MSLQ (Motivated Strategies for Learning Questionnaire). The question would be, is there a relationship between time spent engaging with flipped classroom materials, and average scores on a subset of the questions on the MSLQ or an average of selected scores from across the MSLQ? That is, is there any kind of relationship between self-reported self-regulation items and time spent engaging with class materials? 
 
 2.  Briefly describe how you might “polish” a data visualization for the educators you will share it with?
  
-    -
+    - Most of the sharing I would ever do with educators is through social media or presentations, so I'd want to create graphics that are colorful, easy to read at a distance, and aren't overly complicated. I'd want to use color to convey information when it makes sense, make all the objects in the visualization a little larger than I would for a print publication, and not have a lot of unnecessary items in the visualization. 
 
 3.  How might you include education practitioners (e.g teachers, admin, policymakers, etc) to be involved in the study?
 
-    -   
+    -   Find a group of instructors teaching the same course who would be willing to give the MSLQ to their students (not an insignificant thing since it has 70+ questions on it) and share their students' engagement data from the LMS. 
 
 ### Part II: Data Product
 
@@ -77,6 +78,12 @@ Exercise:
     intended audience, as well as selecting a form for displaying that
     information, such as a graph or table in static or interactive form,
     i.e.a "data product."
+    
+    # WHAT EVENTUALLY GOES HERE - Student data from F2020, their responses 
+    # to the questions about "how often does X instructional practice happen" 
+    # and their overall satisfaction. Any relationships of note between the frequency
+    # of the good practices and the overall satisfaction score? 
+    # Saved as inst_practices.csv 
 
 2.  **Polish**. After creating initial versions of data products,
     research teams often spend time refining or polishing them, by

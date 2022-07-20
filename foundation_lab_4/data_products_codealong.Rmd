@@ -3,6 +3,9 @@ title: "Foundations lab 4 - Data Products"
 author: "Jeanne McClure"
 date: "`r Sys.Date()`"
 output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -12,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 1. Prepare
 
 Install and load library's needed for analysis.
+
 ```{r warning=FALSE, message=FALSE}
 #load libraries
 library(tidyverse)
@@ -21,44 +25,67 @@ library(here)
 ## 2. Wrangle
 
 Read in previously saved data
+
 ```{r messages=FALSE, warning=FALSE}
 # read in data to explore 
 data_to_explore <- read_csv(here("data", "data_to_explore.csv"))
 
 ```
 
-
 ## Explore
-Looked at insights using ggplot
-What insights did we find?
+
+Looked at insights using ggplot What insights did we find?
 
 ## Model
-Quantify the insights using mathematical models. As highlighted in.[Chapter 3 of Data Science in Education Using
-R](https://datascienceineducation.com/c03.html), the.**Model**.step of the data science process entails "using statistical models, from simple to complex, to understand trends and patterns in the data." The authors note that while descriptive statistics and data visualization during the**Explore**step can help us to identify patterns and relationships in our data, statistical models can be used to help us determine if relationships, patterns and trends are actually meaningful. 
+
+Quantify the insights using mathematical models. As highlighted
+in.[Chapter 3 of Data Science in Education Using
+R](https://datascienceineducation.com/c03.html), the.**Model**.step of
+the data science process entails "using statistical models, from simple
+to complex, to understand trends and patterns in the data." The authors
+note that while descriptive statistics and data visualization during
+the**Explore**step can help us to identify patterns and relationships in
+our data, statistical models can be used to help us determine if
+relationships, patterns and trends are actually meaningful.
 
 ##### A. Correlation Matrix
 
-As highlighted in @macfadyen2010, scatter plots are a useful initial approach for identifying potential correlational trends between variables under investigation, but to further interrogate the significance of selected variables as indicators of student achievement, a simple correlation analysis of each variable with student final grade can be conducted.
+As highlighted in @macfadyen2010, scatter plots are a useful initial
+approach for identifying potential correlational trends between
+variables under investigation, but to further interrogate the
+significance of selected variables as indicators of student achievement,
+a simple correlation analysis of each variable with student final grade
+can be conducted.
 
-There are two efficient ways to create correlation matrices, one that is best for internal use, and one that is best for inclusion in a manuscript. The {corrr} package provides a way to create a correlation matrix in a {tidyverse}-friendly way. Like for the {skimr} package, it can take as little as a line of code to create a correlation matrix. If not familiar, a correlation matrix is a table that presents how *all of the variables* are related to *all of the other variables*.
-
-
+There are two efficient ways to create correlation matrices, one that is
+best for internal use, and one that is best for inclusion in a
+manuscript. The {corrr} package provides a way to create a correlation
+matrix in a {tidyverse}-friendly way. Like for the {skimr} package, it
+can take as little as a line of code to create a correlation matrix. If
+not familiar, a correlation matrix is a table that presents how *all of
+the variables* are related to *all of the other variables*.
 
 ```{r messages=FALSE, warning=FALSE}
 #install corrr package if this is your first time
 
+install.packages("corrr")
 # read in library
 library(corrr)
 ```
 
-Look and see if there is a simple correlation between time spent and student achievement.
+Look and see if there is a simple correlation between time spent and
+student achievement.
+
 ```{r messages = FALSE, warning=FALSE}
 data_to_explore %>% 
   select(proportion_earned, time_spent_hours) %>%
   correlate()
 ```
 
-For printing purposes,the `fashion()` function can be added for converting a correlation data frame into a matrix with the correlations cleanly formatted (leading zeros removed; spaced for signs) and the diagonal (or any NA) left blank.
+For printing purposes,the `fashion()` function can be added for
+converting a correlation data frame into a matrix with the correlations
+cleanly formatted (leading zeros removed; spaced for signs) and the
+diagonal (or any NA) left blank.
 
 ```{r messages=FALSE, warning=FALSE}
 #add fashion function
@@ -70,24 +97,30 @@ data_to_explore %>%
   fashion()
 ```
 
-If time allows feel free to add more variables to see if they are related to time spent, sticking to numeric variables. Were your selected variables related to time spent in the course? 
-
+If time allows feel free to add more variables to see if they are
+related to time spent, sticking to numeric variables. Were your selected
+variables related to time spent in the course?
 
 ##### B. APA Formatted Table
 
-While {corrr} is a nice package to quickly create a correlation matrix, you may wish to create one that is ready to be added directly to a dissertation or journal article. {apaTables} is
-great for creating more formal forms of output that can be added
-directly to an APA-formatted manuscript; it also has functionality for regression and other types of model output. It is not as friendly to {tidyverse} functions; first, we need to select only the variables we wish to correlate.
+While {corrr} is a nice package to quickly create a correlation matrix,
+you may wish to create one that is ready to be added directly to a
+dissertation or journal article. {apaTables} is great for creating more
+formal forms of output that can be added directly to an APA-formatted
+manuscript; it also has functionality for regression and other types of
+model output. It is not as friendly to {tidyverse} functions; first, we
+need to select only the variables we wish to correlate.
 
 Then, we can use that subset of the variables as the argument to
 the`apa.cor.table()` function.
 
 Run the following code to create a subset of the larger
-`data_to_explore` data frame with the variables you wish to correlate, then create a correlation table using `apa.cor.table()`.
+`data_to_explore` data frame with the variables you wish to correlate,
+then create a correlation table using `apa.cor.table()`.
 
 ```{r messages=FALSE, warning=FALSE}
 #install if this is your first time
-
+install.packages("apaTables")
 # read in apatables library
 library(apaTables)
 
@@ -96,22 +129,32 @@ data_to_explore_subset <- data_to_explore %>%
 
 apa.cor.table(data_to_explore_subset)
 ```
-This may look nice, but how to actually add this into a dissertation or article that you might be interested in publishing? 
 
-Read the documentation for `apa.cor.table()` by running `?apa.cor.table()` in the console. Look through the documentation and examples to understand how to output a file with the formatted correlation table, and then run the code to do that with your subset of the `data_to_explore` data frame.
+This may look nice, but how to actually add this into a dissertation or
+article that you might be interested in publishing?
+
+Read the documentation for `apa.cor.table()` by running
+`?apa.cor.table()` in the console. Look through the documentation and
+examples to understand how to output a file with the formatted
+correlation table, and then run the code to do that with your subset of
+the `data_to_explore` data frame.
 
 ```{r messages=FALSE, warning=FALSE}
 apa.cor.table(data_to_explore_subset, filename = "cor-table.doc")
 ```
 
-You should now see a new Word document in your project folder called `survey-cor-table.doc`. Click on that and you'll be prompted to download from your browser.
+You should now see a new Word document in your project folder called
+`survey-cor-table.doc`. Click on that and you'll be prompted to download
+from your browser.
 
 ##### C. Predict Academic Achievement
 
 ##### Linear Regression
 
-In brief, a linear regression model involves
-estimating the relationships between one or more *independent variables* with one dependent variable. Mathematically, it can be written like the following.
+In brief, a linear regression model involves estimating the
+relationships between one or more *independent variables* with one
+dependent variable. Mathematically, it can be written like the
+following.
 
 $$
 \operatorname{dependentvar} = \beta_{0} + \beta_{1}(\operatorname{independentvar}) + \epsilon
@@ -119,14 +162,20 @@ $$
 
 Does time spent predict grade earned?
 
-The following code estimates a model in which `proportion_earned`, the proportion of points students earned, is the dependent variable. It is predicted by one independent variable, `int`, students' self-reported interest in science.
+The following code estimates a model in which `proportion_earned`, the
+proportion of points students earned, is the dependent variable. It is
+predicted by one independent variable, `int`, students' self-reported
+interest in science.
 
 ```{r messages=FALSE, warning=FALSE}
 lm(proportion_earned ~ time_spent_hours, 
    data = data_to_explore)
 ```
 
-The following code estimates a model in which `proportion_earned`, the proportion of points students earned, is the dependent variable. It is predicted by one independent variable, `int`, students' self-reported interest in science.
+The following code estimates a model in which `proportion_earned`, the
+proportion of points students earned, is the dependent variable. It is
+predicted by one independent variable, `int`, students' self-reported
+interest in science.
 
 ```{r messages=FALSE, warning=FALSE}
 # Add predictor variable for science
@@ -134,11 +183,15 @@ lm(proportion_earned ~ time_spent_hours + int,
    data = data_to_explore)
 ```
 
+We can see that the intercept is now estimated at 0.44, which tells us
+that when students' time spent and interest are equal to zero, they are
+likely fail the course unsurprisingly. Note that that estimate for
+interest in science is .046, so for every one-unit increase in `int`, we
+should expect an 5 percentage point increase in their grade.
 
-We can see that the intercept is now estimated at 0.44, which tells us that when students' time spent and interest are equal to zero, they are likely fail the course unsurprisingly. Note that that estimate for interest in science is .046, so for every one-unit increase in `int`, we should expect an 5 percentage point increase in their grade.
-
-We can save the output of the function to an object---let's say
-`m1`, standing for model 1. We can then use the `summary()` function built into R to view a much more feature-rich summary of the estimated model.
+We can save the output of the function to an object---let's say `m1`,
+standing for model 1. We can then use the `summary()` function built
+into R to view a much more feature-rich summary of the estimated model.
 
 ```{r messages=FALSE, warning=FALSE}
 # save the model
@@ -147,6 +200,7 @@ m1 <- lm(proportion_earned ~ time_spent_hours + int, data = data_to_explore)
 ```
 
 Run a summary model for the model you just created called, `m1.`
+
 ```{r messages=FALSE, warning=FALSE}
 #run the summary
 summary(m1)
@@ -154,8 +208,12 @@ summary(m1)
 ```
 
 ##### Summarize predictors
-the `summarize()` function from the {dplyr}
-package used to create summary statistics such as the mean, standard deviation, or the minimum or maximum of a value. At its core, think of `summarize()` as a function that returns a single value (whether it's a mean, median, standard deviation---whichever!) that summarizes a single column.
+
+the `summarize()` function from the {dplyr} package used to create
+summary statistics such as the mean, standard deviation, or the minimum
+or maximum of a value. At its core, think of `summarize()` as a function
+that returns a single value (whether it's a mean, median, standard
+deviation---whichever!) that summarizes a single column.
 
 ```{r messages=FALSE, warning=FALSE}
 data_to_explore %>% 
@@ -163,18 +221,23 @@ data_to_explore %>%
             mean_time = mean(time_spent_hours, na.rm = TRUE))
 ```
 
-The mean value for interest is quite high. If we multiply the estimate relationship between interest and proportion of points
+The mean value for interest is quite high. If we multiply the estimate
+relationship between interest and proportion of points
 earned---0.046---by this, the mean interest across all of the
-students---we can determine that students' estimate final grade was 0.046 X 4.3, or **0.197**. For hours spent spent, the average students' estimate final grade was 0.0042 X 30.48, or **0.128**.
+students---we can determine that students' estimate final grade was
+0.046 X 4.3, or **0.197**. For hours spent spent, the average students'
+estimate final grade was 0.0042 X 30.48, or **0.128**.
 
-If we add both 0.197 and 0.128 to the intercept, 0.449, that equals 0.774, or about 77%. In other words, a student with average interest in science who spent an average amount of time in the course earned a pretty average grade.
-
+If we add both 0.197 and 0.128 to the intercept, 0.449, that equals
+0.774, or about 77%. In other words, a student with average interest in
+science who spent an average amount of time in the course earned a
+pretty average grade.
 
 Let's save this as a nice APA table for possible publication
-```{r messages=FALSE, warning=FALSE}
-apa.reg.table(m1, filename = "lm-table.doc")
-```
 
+```{r messages=FALSE, warning=FALSE}
+apa.reg.table(m1, filename = "lm-table.pdf")
+```
 
 ```{r messages=FALSE, warning=FALSE}
 #install apaTables if this is your first time - do you remember how?
@@ -187,6 +250,7 @@ apa.reg.table(m1, filename = "lm-table.doc")
 ```
 
 ## Communicate
+
 For your final Your Turn, your goal is to distill our analysis from
 above into a simple "data product" designed to illustrate key findings
 about changes in the collaboration network over time. For the purposes
@@ -194,11 +258,15 @@ of this task, imagine that your audience consists of the developers and
 facilitators of the DLT MOOC-Eds who have limited background in SNA and
 adapt the following steps accordingly:
 
-1.  **Select.** Select a group  from above, or a new analysis if so motivated, that you think would be interesting or relevant for the target audience and that helps answer our research questions.
+1.  **Select.** Select a group from above, or a new analysis if so
+    motivated, that you think would be interesting or relevant for the
+    target audience and that helps answer our research questions.
 
-2.  **Polish.** Create and polish a data visualization and/or data table to communicate your selected findings.
+2.  **Polish.** Create and polish a data visualization and/or data table
+    to communicate your selected findings.
 
-3.  **Narrate.** Write a brief narrative (2-3 paragraphs) to accompany your visualization and/or table that includes the following:
+3.  **Narrate.** Write a brief narrative (2-3 paragraphs) to accompany
+    your visualization and/or table that includes the following:
 
     -   The question or questions guiding the analysis;
 
@@ -208,12 +276,14 @@ adapt the following steps accordingly:
 
     -   How you might revisit or improve upon this analysis in the
         future.
-        
+
 #### **👉 Your Turn** **⤵**
 
-Purpose of this case study is to investigate whether time spent in an online course is predictive of student achievement.
+Purpose of this case study is to investigate whether time spent in an
+online course is predictive of student achievement.
 
-To do this we looked at  a simple correlation between time spent and student achievement.
+To do this we looked at a simple correlation between time spent and
+student achievement.
 
 **RQ1**: Do males outperform females in online STEM courses?
 
@@ -243,21 +313,21 @@ data_viz <- data_to_explore %>%
        x = "Online STEM Course")
 ```
 
+Want to learn more ways to
 
-
-
-Want to learn more ways to 
-
-Knit your data product to a desired output format. This may be a simple 
-- [HTML](https://bookdown.org/yihui/rmarkdown/html-document.html), 
-- [PDF](https://bookdown.org/yihui/rmarkdown/pdf-document.html), or 
-- [MS Word](https://bookdown.org/yihui/rmarkdown/word-document.html) file; or something more complex like 
-- [HTML5 slides](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html), 
-- [Tufte-style handout](https://bookdown.org/yihui/rmarkdown/tufte-handouts.html),
-- [dashboard](https://rmarkdown.rstudio.com/flexdashboard/), or 
-- [website](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html). 
+Knit your data product to a desired output format. This may be a
+simple -
+[HTML](https://bookdown.org/yihui/rmarkdown/html-document.html), -
+[PDF](https://bookdown.org/yihui/rmarkdown/pdf-document.html), or - [MS
+Word](https://bookdown.org/yihui/rmarkdown/word-document.html) file; or
+something more complex like - [HTML5
+slides](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html), -
+[Tufte-style
+handout](https://bookdown.org/yihui/rmarkdown/tufte-handouts.html), -
+[dashboard](https://rmarkdown.rstudio.com/flexdashboard/), or -
+[website](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html).
 
 You can publish and share from:
 
-- (e.g., via [RPubs](https://rpubs.com/about/getting-started) or 
-- [GitHub](https://towardsdatascience.com/how-to-create-a-free-github-pages-website-53743d7524e1)) 
+-   (e.g., via [RPubs](https://rpubs.com/about/getting-started) or
+-   [GitHub](https://towardsdatascience.com/how-to-create-a-free-github-pages-website-53743d7524e1))
